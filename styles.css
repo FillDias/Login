@@ -16,6 +16,18 @@ body {
     background-position: center;
 }
 
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(5px);
+    z-index: -1;
+}
+
 .container{
     width: 420px;
     background-color: transparent;
@@ -25,6 +37,7 @@ body {
     color: aliceblue;
     padding: 30px 40px;
     box-shadow:  rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(248, 246, 246, 0.3) 0px 30px 60px -30px;
+    backdrop-filter: blur(10px);
 }   
 
 .container h1{
@@ -51,6 +64,11 @@ body {
     padding: 20px 45px 20px 20px;
 }
 
+.input-box input:focus {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 .input-box input::placeholder {
     color: rgb(210, 216, 221);
 }
@@ -59,6 +77,15 @@ body {
     right: 20px;
     top: 25%;
     font-size: 20px;
+}
+
+#toggleSenha {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#toggleSenha:hover {
+    color: #fff;
 }
 
 .remember-forgot {
@@ -91,15 +118,40 @@ body {
     color: #333;
     font-weight: 600;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
 }
 
 .login:hover {
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    color: #e0dbdb;
-    transition: 0.4s;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+    color: #fff;
 }
+
+.login.loading {
+    pointer-events: none;
+    position: relative;
+}
+
+.login.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .register-link{
     font-size: 14px;
     text-align: center;
@@ -113,4 +165,30 @@ body {
 }
 .register-link a:hover{
     text-decoration: underline;
+}
+
+.mensagem-erro {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+}
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .container h1 {
+        font-size: 28px;
+    }
+
+    .input-box input {
+        padding: 15px 40px 15px 15px;
+    }
+
+    .login {
+        font-size: 14px;
+    }
 }

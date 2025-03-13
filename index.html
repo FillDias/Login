@@ -12,26 +12,30 @@
 </head>
 <body>
     <main class="container">
-        <form>
+        <form id="formLogin">
             <h1>Login</h1>
             <div class="input-box">
                <input placeholder="Usuário" type="email">
                <i class="bx bxs-user"></i>
+               <!--  Usuário login -->
 
             </div>
             <div class="input-box">
                 <input placeholder="Senha" type="password">
                 <i class="bx bxs-lock-alt"></i>
+                <!-- Campo de Senha -->
              </div>
              <div class="remember-forgot">
                 <label >
-                <input type="checkbox">
+                <input type="checkbox" id="lembrarSenha">
                 Lembrar senha
                 </label>
                 <a href="#">Esqueci senha</a>
              </div>
+              <!-- botão login -->
              <button type="submit" class="login">Login</button>
              <div class="register-link">
+                 <!-- cadastro -->
                 <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
              </div>
 
@@ -40,6 +44,60 @@
         </form>
 
     </main>
+    <script>
+        // Validar Formulario
+        document.getElementById('formLogin').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            let email = document.getElementById('email').value;
+            let senha = document.getElementById('senha').value;
+
+            // Validação básica
+            if (email === "" || senha === "") {
+                alert("Por favor, preencha todos os campos!");
+            } else if (senha.length < 6) {
+                alert("A senha deve ter pelo menos 6 caracteres!");
+            } else {
+                alert("Login realizado com sucesso!");
+                // Aqui você pode redirecionar o usuário ou enviar os dados para o servidor
+                window.location.href = "bem-vindo.html"; // Redireciona para outra página
+            }
+        });
+
+        // 2. Mostrar/Ocultar Senha
+        document.getElementById('toggleSenha').addEventListener('click', function() {
+            let senha = document.getElementById('senha');
+            if (senha.type === 'password') {
+                senha.type = 'text';
+                this.classList.remove('bxs-lock-alt');
+                this.classList.add('bxs-lock-open');
+            } else {
+                senha.type = 'password';
+                this.classList.remove('bxs-lock-open');
+                this.classList.add('bxs-lock-alt');
+            }
+        });
+
+        // 3. Lembrar Senha (usando localStorage)
+        window.onload = function() {
+            let emailSalvo = localStorage.getItem('emailSalvo');
+            let lembrarSenha = document.getElementById('lembrarSenha');
+
+            if (emailSalvo) {
+                document.getElementById('email').value = emailSalvo;
+                lembrarSenha.checked = true;
+            }
+
+            lembrarSenha.addEventListener('change', function() {
+                if (this.checked) {
+                    let email = document.getElementById('email').value;
+                    localStorage.setItem('emailSalvo', email);
+                } else {
+                    localStorage.removeItem('emailSalvo');
+                }
+            });
+        };
+    </script>
     
 </body>
 </html>
