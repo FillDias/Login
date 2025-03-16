@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+body {
+    background:url('./img/fundo.jpg') ;
+    min-height: 100vh; /* Cor de fundo clara */
+    background-size: cover;
+    background-position: center;
+    font-family: "Montserrat", sans-serif; /* Define a fonte padrão */
+    color: #333; /* Cor do texto */
+}
+main {
+    position: absolute;
+    top: 50%; /* Move o main para 50% do topo */
+    left: 50%; /* Move o main para 50% da esquerda */
+    transform: translate(-50%, -50%); /* Centraliza o main */
+    text-align: center; /* Centraliza o conteúdo dentro do main */
+}
+
+header {
+    display: flex;
+    justify-content: space-between; /* Distribui os itens ao longo do cabeçalho */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    padding: 10px 20px; /* Adiciona um pouco de espaçamento interno */
+    background: #f6f6f8; /* Cor de fundo para visualização */
+    border-bottom: 1px solid #ccc; /* Linha inferior para estilo */
+}
+
+.logotipo {
+    width: 60px; /* Ajuste o tamanho da logo conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-right: auto; /* Empurra a logo para a esquerda */
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive; /* Aplica a fonte retro */
+    font-size: 2.5em; /* Tamanho da fonte */
+    font-weight: 100; /* Deixa a fonte mais fina */
+    color: #ee60c3; /* Cor retrô (laranja-rosado) */
+    text-transform: uppercase; /* Transforma o texto em maiúsculas */
+    letter-spacing: 4px; /* Aumenta o espaçamento entre as letras */
+    text-shadow: 2px 2px 0 #662c2c, 4px 4px 0 #8378b4; /* Sombra retrô */
+    margin: 20px 0; /* Espaçamento externo */
+}
+
+.logout {
+    
+    margin-left: auto; /* Empurra o botão para a direita */
+    padding: 10px 20px; /* Adiciona espaçamento interno ao botão */
+    background-color: #e069b3; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Adiciona bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+}
+
+.logout:hover {
+    background-color: #abb6c2; /* Cor de fundo ao passar o mouse */
+}
