@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aclamada </title>
+</head>
+<body>
+    <header>
+        <h1>Aclamada Coin</h1>
+    </header>
+    <main>
+        <p> Você logou com sucesso</p>
+        <button id="logoutButton">Logout</button>
+    </main>
+    <script type="module">
+        // Importe o Firebase
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+        // Função de Logout
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                console.log("Usuário deslogado.");
+                window.location.href = "/index.html"; // Redireciona para a página de login
+            }).catch((error) => {
+                console.error("Erro ao deslogar:", error);
+            });
+        });
+    </script>
+    
+</body>
+</html>

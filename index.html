@@ -3,76 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
-    rel='stylesheet'> 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="styles.css">
-    
     <title>Aclamada Melancolia</title>
 </head>
 <body>
-    
-       
-    
-  
     <main class="container">
         <img src="img/logo.png" alt="Logo da Empresa" class="logo">
-        
         <form id="formLogin">
-           
             <div class="input-box">
-               <input placeholder="Usuário" type="email">
-               <i class="bx bxs-user"></i>
-               <!--  Usuário login -->
-
+                <input placeholder="Usuário" type="email" id="email"> <!-- ID correto -->
+                <i class="bx bxs-user"></i>
             </div>
             <div class="input-box">
-                <input placeholder="Senha" type="password">
-                <i class="bx bxs-lock-alt"></i>
-                <!-- Campo de Senha -->
-             </div>
-             <div class="remember-forgot">
-                <label >
-                <input type="checkbox" id="lembrarSenha">
-                Lembrar senha
+                <input placeholder="Senha" type="password" id="password"> <!-- ID correto -->
+                <i class="bx bxs-lock-alt" id="toggleSenha"></i>
+            </div>
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox" id="lembrarSenha">
+                    Lembrar senha
                 </label>
                 <a href="#">Esqueci senha</a>
-             </div>
-              <!-- botão login -->
-             <button type="submit" class="login">Login</button>
-             <div class="register-link">
-                 <!-- cadastro -->
+            </div>
+            <button type="submit" class="login">Login</button>
+            <div class="register-link">
                 <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
-             </div>
-
-                
-             
+            </div>
         </form>
-
     </main>
-    <script>
-        // Validar Formulario
+
+    <script type="module">
+        // Importe o Firebase usando a sintaxe de módulos ES
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAAQtVmo7j_5i-A8xDeobGMJ91nub3LFG4",
+            authDomain: "loginam-fe69d.firebaseapp.com",
+            projectId: "loginam-fe69d",
+            storageBucket: "loginam-fe69d.firebasestorage.app",
+            messagingSenderId: "675758334040",
+            appId: "1:675758334040:web:30f9b3140d6d1a71ab6a2d",
+            measurementId: "G-15YKG12K4P"
+        };
+
+        // Inicialize o Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Função de Login
+        function login() {
+            const email = document.getElementById('email').value; // Acessa o campo de e-mail
+            const password = document.getElementById('password').value; // Acessa o campo de senha
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log("Usuário logado:", user);
+
+                    window.location.href = "home.html";
+                })
+
+               
+
+                .catch((error) => {
+                    console.error("Erro no login:", error.message);
+                });
+        }
+
+        // Evento de Submit do Formulário
         document.getElementById('formLogin').addEventListener('submit', function(event) {
             event.preventDefault(); // Impede o envio do formulário
-
-            let email = document.getElementById('email').value;
-            let senha = document.getElementById('senha').value;
-
-            // Validação básica
-            if (email === "" || senha === "") {
-                alert("Por favor, preencha todos os campos!");
-            } else if (senha.length < 6) {
-                alert("A senha deve ter pelo menos 6 caracteres!");
-            } else {
-                alert("Login realizado com sucesso!");
-                // Aqui você pode redirecionar o usuário ou enviar os dados para o servidor
-                window.location.href = "bem-vindo.html"; // Redireciona para outra página
-            }
+            login(); // Chama a função de login
         });
 
-        // 2. Mostrar/Ocultar Senha
+        // Mostrar/Ocultar Senha
         document.getElementById('toggleSenha').addEventListener('click', function() {
-            let senha = document.getElementById('senha');
+            let senha = document.getElementById('password');
             if (senha.type === 'password') {
                 senha.type = 'text';
                 this.classList.remove('bxs-lock-alt');
@@ -84,7 +93,7 @@
             }
         });
 
-        // 3. Lembrar Senha (usando localStorage)
+        // Lembrar Senha
         window.onload = function() {
             let emailSalvo = localStorage.getItem('emailSalvo');
             let lembrarSenha = document.getElementById('lembrarSenha');
@@ -104,6 +113,5 @@
             });
         };
     </script>
-    
 </body>
 </html>
