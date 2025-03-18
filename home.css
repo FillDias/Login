@@ -7,7 +7,7 @@
     font-family: "Montserrat", sans-serif;
 }
 body {
-    background:url('./img/fundo.jpg') ;
+    
     min-height: 100vh; /* Cor de fundo clara */
     background-size: cover;
     background-position: center;
@@ -41,7 +41,7 @@ h1 {
     font-family: 'Press Start 2P', cursive; /* Aplica a fonte retro */
     font-size: 2.5em; /* Tamanho da fonte */
     font-weight: 100; /* Deixa a fonte mais fina */
-    color: #ee60c3; /* Cor retrô (laranja-rosado) */
+    color: #ce63ae; /* Cor retrô (laranja-rosado) */
     text-transform: uppercase; /* Transforma o texto em maiúsculas */
     letter-spacing: 4px; /* Aumenta o espaçamento entre as letras */
     text-shadow: 2px 2px 0 #662c2c, 4px 4px 0 #8378b4; /* Sombra retrô */
